@@ -1,0 +1,13 @@
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\bin\Debug\net9.0\BusBooking.Shared.deps.json
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\bin\Debug\net9.0\BusBooking.Shared.dll
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\bin\Debug\net9.0\BusBooking.Shared.pdb
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\obj\Debug\net9.0\BusBooking.Shared.csproj.AssemblyReference.cache
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\obj\Debug\net9.0\BusBooking.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\obj\Debug\net9.0\BusBooking.Shared.AssemblyInfoInputs.cache
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\obj\Debug\net9.0\BusBooking.Shared.AssemblyInfo.cs
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\obj\Debug\net9.0\BusBooking.Shared.csproj.CoreCompileInputs.cache
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\obj\Debug\net9.0\BusBooking.Shared.sourcelink.json
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\obj\Debug\net9.0\BusBooking.Shared.dll
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\obj\Debug\net9.0\refint\BusBooking.Shared.dll
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\obj\Debug\net9.0\BusBooking.Shared.pdb
+C:\Users\nitinkumar17\source\repos\core-repo\BusBookingApp\BusBooking.Shared\obj\Debug\net9.0\ref\BusBooking.Shared.dll
