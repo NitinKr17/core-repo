@@ -722,6 +722,7 @@
       "BusBooking.Application/1.0.0": {
         "dependencies": {
           "BusBooking.Domain": "1.0.0",
+          "BusBooking.Infrastructure": "1.0.0",
           "BusBooking.Shared": "1.0.0"
         },
         "runtime": {

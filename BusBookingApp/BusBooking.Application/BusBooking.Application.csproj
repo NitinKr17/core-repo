@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BusBooking.Domain\BusBooking.Domain.csproj" />
+    <ProjectReference Include="..\BusBooking.Infrastructure\BusBooking.Infrastructure.csproj" />
     <ProjectReference Include="..\BusBooking.Shared\BusBooking.Shared.csproj" />
   </ItemGroup>
 

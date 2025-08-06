@@ -9,4 +9,3 @@ public class User
     public string Role { get; set; } = "User";
     public ICollection<Booking>? Bookings { get; set; }
 }
-

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj": {}
+    "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj": {
+    "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj",
         "projectName": "BusBooking.Shared",
-        "projectPath": "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj",
+        "projectPath": "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj",
         "packagesPath": "C:\\Users\\nitinkumar17\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\obj\\",
+        "outputPath": "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
