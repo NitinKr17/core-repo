@@ -1,0 +1,6 @@
+@BusBooking.API_HostAddress = http://localhost:5116
+
+GET {{BusBooking.API_HostAddress}}/booking/
+Accept: application/json
+
+###
