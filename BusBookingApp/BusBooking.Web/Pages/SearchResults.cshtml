@@ -1,0 +1,40 @@
+﻿@page
+@model BusBooking.Web.Pages.Home.SearchResultsModel
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2>Search Results</h2>
+
+@if (Model.Buses.Count == 0)
+{
+    <p>No buses found for the selected route and date.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Operator</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Available Seats</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bus in Model.Buses)
+            {
+                <tr>
+                    <td>@bus.OperatorName</td>
+                    <td>@bus.Source</td>
+                    <td>@bus.Destination</td>
+                    <td>@bus.DepartureTime.ToString("g")</td>
+                    <td>@bus.ArrivalTime.ToString("g")</td>
+                    <td>@bus.AvailableSeats</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
