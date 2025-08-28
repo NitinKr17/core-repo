@@ -1,5 +1,6 @@
 ﻿using BusBooking.Application.DTOs;
 using BusBooking.Application.Interfaces;
+using BusBooking.Shared.Constants;
 using BusBooking.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -10,7 +11,7 @@ using System.Text;
 namespace BusBooking.API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route(APIConstants.Controller)]
 public class AuthController : ControllerBase
 {
     private readonly IConfiguration _configuration;
@@ -30,18 +31,28 @@ public class AuthController : ControllerBase
         var user = _authService.Authenticate(loginDto.Email, loginDto.Password);
         if (user == null)
         {
-            _logger.LogWarning("Invalid login attempt for email: {Email}", loginDto.Email);
-            return Unauthorized(new { message = "Invalid credentials" });
+            _logger.LogWarning(APIConstants.InvalidLoginLogTemplate, loginDto.Email);
+            return Unauthorized(new { message = APIConstants.InvalidLoginMessage });
         }
 
         var token = GenerateJwtToken(user);
         return Ok(new { token });
     }
 
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] RegisterRequestDto dto, [FromServices] IUserService userService)
+    {
+        var created = await userService.RegisterAsync(dto);
+        if (created == null)
+            return BadRequest(APIConstants.AlreadyExistError);
+
+        return CreatedAtAction(nameof(Login), new { email = created.Email }, created);
+    }
+
     private string GenerateJwtToken(UserDto user)
     {
-        var jwtSettings = _configuration.GetSection("Jwt");
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]));
+        var jwtSettings = _configuration.GetSection(APIConstants.JwtSection);
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings[APIConstants.JwtKey] ?? string.Empty));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var claims = new[]
@@ -49,12 +60,13 @@ public class AuthController : ControllerBase
             new Claim(JwtRegisteredClaimNames.Sub, user.Email),
             new Claim(ClaimTypes.Name, user.FullName),
             new Claim(ClaimTypes.Role, user.Role),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        };
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(APIConstants.UserIdClaimType, user.Id.ToString())
+    };
 
         var token = new JwtSecurityToken(
-            issuer: jwtSettings["Issuer"],
-            audience: jwtSettings["Audience"],
+            issuer: jwtSettings[APIConstants.JwtIssuer],
+            audience: jwtSettings[APIConstants.JwtAudience],
             claims: claims,
             expires: DateTime.UtcNow.AddHours(1),
             signingCredentials: creds

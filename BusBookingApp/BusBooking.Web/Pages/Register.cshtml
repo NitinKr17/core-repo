@@ -1,4 +1,75 @@
 ﻿@page
+@using BusBooking.Domain.Enums
 @model BusBooking.Web.Pages.RegisterModel
+
 @{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Register";
+}
+
+<div class="container mt-5" style="max-width: 520px;">
+    <div class="card shadow">
+        <div class="card-body">
+            <h2 class="text-center mb-4">Create account</h2>
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    @foreach (var e in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <div>@e.ErrorMessage</div>
+                    }
+                </div>
+            }
+
+            <form method="post">
+                <input type="hidden" asp-for="ReturnUrl" />
+
+                <div class="mb-3">
+                    <label asp-for="FullName" class="form-label">Full name</label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" type="email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label">Confirm password</label>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Role" class="form-label">Role</label>
+                    <select asp-for="Role" class="form-select">
+                        <option value="">-- Select role --</option>
+                        @foreach (UserRole role in Enum.GetValues(typeof(UserRole)))
+                        {
+                            <option value="@role.ToString()">@role</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Create account</button>
+                <div class="text-center mt-3">
+                    <a asp-page="/Login" asp-route-returnUrl="@Model.ReturnUrl">Back to login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

@@ -1,0 +1,56 @@
+﻿@using BusBooking.Shared.Constants
+@model IEnumerable<BusBooking.Application.DTOs.BusDto>
+
+@if (ViewData[AppConstants.ErrorMessage] != null)
+{
+    <p class="text-danger mt-3">@ViewData[AppConstants.ErrorMessage]</p>
+}
+else if (Model != null && Model.Any())
+{
+    <table class="table table-bordered mt-3 text-center">
+        <thead>
+            <tr class="align-middle">
+                <th rowspan="2">Operator</th>
+                <th rowspan="2">From</th>
+                <th rowspan="2">To</th>
+                <th rowspan="2">Departure</th>
+                <th rowspan="2">Arrival</th>
+                <th colspan="2">Seats</th>
+                <th rowspan="2">Book</th>
+            </tr>
+            <tr class="align-middle">
+                <th>Available</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bus in Model.OrderBy(x => x.DepartureTime))
+            {
+                var departed = bus.DepartureTime <= DateTime.UtcNow;
+                <tr>
+                    <td>@bus.OperatorName</td>
+                    <td>@bus.Source</td>
+                    <td>@bus.Destination</td>
+                    <td>@bus.DepartureTime.ToString("g")</td>
+                    <td>@bus.ArrivalTime.ToString("g")</td>
+                    <td>@bus.AvailableSeats</td>
+                    <td>@bus.TotalSeats</td>
+                    <td>
+                        @if (bus.AvailableSeats <= 0 || departed)
+                        {
+                            <a disabled class="btn btn-sm btn-secondary disabled">Book</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-sm btn-success" asp-page="/Booking" asp-route-busId="@bus.Id">Book</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-danger mt-3">No buses found for selected criteria.</p>
+}

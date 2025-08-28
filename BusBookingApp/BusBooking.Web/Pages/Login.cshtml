@@ -1,9 +1,11 @@
 ﻿@page
 @model BusBooking.Web.Pages.LoginModel
+@using BusBooking.Shared.Constants
 
 @{
     Layout = "_LoginLayout";
     ViewData["Title"] = "Login";
+    var successMessage = TempData[AppConstants.RegistrationSuccessMessageKey]?.ToString();
 }
 
 <div class="container mt-5" style="max-width: 500px;">
@@ -37,11 +39,51 @@
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary w-100">Login</button>
                 </div>
+                <div class="text-center mt-3">
+                    <a class="btn btn-outline-secondary w-100"
+                       asp-page="/Register"
+                       asp-route-returnUrl="@HttpContext.Request.Query["returnUrl"]">
+                        Create an account
+                    </a>
+                </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Toast container -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toastMessage" class="toast align-items-center text-white bg-success border-0"
+         role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" id="toastContent"></div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        function showToast(message, isError = false) {
+            const toastEl = document.getElementById('toastMessage');
+            const toastContent = document.getElementById('toastContent');
+
+            toastContent.textContent = message;
+            toastEl.classList.remove('bg-success', 'bg-danger');
+            toastEl.classList.add(isError ? 'bg-danger' : 'bg-success');
+
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const successMessage = '@successMessage';
+
+            if (successMessage) {
+                showToast(successMessage, !successMessage);
+            }
+        });
+    </script>
 }

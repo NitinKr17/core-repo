@@ -47,6 +47,35 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Cryptography.Internal/9.0.8": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Cryptography.KeyDerivation/9.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.Internal": "9.0.8"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Http/2.3.0": {
         "type": "package",
         "dependencies": {
@@ -96,6 +125,39 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Abstractions/2.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Routing.Abstractions": "2.3.0",
+          "Microsoft.Net.Http.Headers": "2.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Routing.Abstractions/2.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Routing.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Routing.Abstractions.dll": {
             "related": ".xml"
           }
         }
@@ -490,6 +552,24 @@
         },
         "build": {
           "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Identity.Core/9.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "9.0.8",
+          "Microsoft.Extensions.Logging": "9.0.8",
+          "Microsoft.Extensions.Options": "9.0.8"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.Extensions.Identity.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Identity.Core.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.Extensions.Logging/9.0.8": {
@@ -1247,6 +1327,7 @@
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Microsoft.AspNetCore.Http": "2.3.0",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0",
           "Microsoft.Extensions.Logging": "9.0.8"
         },
         "compile": {
@@ -1297,6 +1378,44 @@
         "lib/netstandard2.0/Azure.Identity.xml"
       ]
     },
+    "Microsoft.AspNetCore.Cryptography.Internal/9.0.8": {
+      "sha512": "NwGO0wh/IjEthBLGA6fWfIiftsNF/paA5RxWp6ji4wWazetJgQ4truR9nU2thAzzFLiXqlg8vGjdVDA8bHu0zA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.cryptography.internal/9.0.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.Cryptography.Internal.dll",
+        "lib/net462/Microsoft.AspNetCore.Cryptography.Internal.xml",
+        "lib/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
+        "lib/net9.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
+        "microsoft.aspnetcore.cryptography.internal.9.0.8.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.internal.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/9.0.8": {
+      "sha512": "gK70xxXYwwPiXYKYVmLYMuIO5EOGrRtQghmM6PkgtZ/0lgLEjIs//xgSLvZkV/mroNHA1DEqTcqscEj9OzZ1IA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.cryptography.keyderivation/9.0.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
+        "lib/net462/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
+        "lib/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
+        "lib/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
+        "microsoft.aspnetcore.cryptography.keyderivation.9.0.8.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Http/2.3.0": {
       "sha512": "I9azEG2tZ4DDHAFgv+N38e6Yhttvf+QjE2j2UYyCACE7Swm5/0uoihCMWZ87oOZYeqiEFSxbsfpT71OYHe2tpw==",
       "type": "package",
@@ -1334,6 +1453,32 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
         "microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
         "microsoft.aspnetcore.http.features.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Mvc.Abstractions/2.3.0": {
+      "sha512": "xrF8Fh10hEAS6Qp967IgPqNw2iz3/3Q8FQo+Jowbytaj1JJN86p0z851hSH4XP/sFnI5gFu7mGdkplirAJMWPw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.mvc.abstractions/2.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Abstractions.xml",
+        "microsoft.aspnetcore.mvc.abstractions.2.3.0.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Routing.Abstractions/2.3.0": {
+      "sha512": "ZkFpUrSmp6TocxZLBEX3IBv5dPMbQuMs6L/BPl0WRfn32UVOtNYJQ0bLdh3cL9LMV0rmTW/5R0w8CBYxr0AOUw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.routing.abstractions/2.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Routing.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Routing.Abstractions.xml",
+        "microsoft.aspnetcore.routing.abstractions.2.3.0.nupkg.sha512",
+        "microsoft.aspnetcore.routing.abstractions.nuspec"
       ]
     },
     "Microsoft.AspNetCore.WebUtilities/2.3.0": {
@@ -1906,6 +2051,25 @@
         "microsoft.extensions.filesystemglobbing.9.0.8.nupkg.sha512",
         "microsoft.extensions.filesystemglobbing.nuspec",
         "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Identity.Core/9.0.8": {
+      "sha512": "giUYz84GHAizDucZp5vWAusDO2s9Jrrg2jQ6HUQNGs5HQMKJVobLPMQSiyg8R4yecH0pIc0QjANh0B/Kw13BHA==",
+      "type": "package",
+      "path": "microsoft.extensions.identity.core/9.0.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.Extensions.Identity.Core.dll",
+        "lib/net462/Microsoft.Extensions.Identity.Core.xml",
+        "lib/net9.0/Microsoft.Extensions.Identity.Core.dll",
+        "lib/net9.0/Microsoft.Extensions.Identity.Core.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.xml",
+        "microsoft.extensions.identity.core.9.0.8.nupkg.sha512",
+        "microsoft.extensions.identity.core.nuspec"
       ]
     },
     "Microsoft.Extensions.Logging/9.0.8": {
@@ -3308,7 +3472,8 @@
     "net9.0": [
       "BusBooking.Domain >= 1.0.0",
       "BusBooking.Infrastructure >= 1.0.0",
-      "BusBooking.Shared >= 1.0.0"
+      "BusBooking.Shared >= 1.0.0",
+      "Microsoft.Extensions.Identity.Core >= 9.0.8"
     ]
   },
   "packageFolders": {
@@ -3318,11 +3483,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Application\\BusBooking.Application.csproj",
+      "projectUniqueName": "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Application\\BusBooking.Application.csproj",
       "projectName": "BusBooking.Application",
-      "projectPath": "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Application\\BusBooking.Application.csproj",
+      "projectPath": "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Application\\BusBooking.Application.csproj",
       "packagesPath": "C:\\Users\\nitinkumar17\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Application\\obj\\",
+      "outputPath": "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3343,14 +3508,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Domain\\BusBooking.Domain.csproj": {
-              "projectPath": "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Domain\\BusBooking.Domain.csproj"
+            "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Domain\\BusBooking.Domain.csproj": {
+              "projectPath": "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Domain\\BusBooking.Domain.csproj"
             },
-            "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Infrastructure\\BusBooking.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Infrastructure\\BusBooking.Infrastructure.csproj"
+            "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Infrastructure\\BusBooking.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Infrastructure\\BusBooking.Infrastructure.csproj"
             },
-            "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj": {
-              "projectPath": "C:\\Users\\nitinkumar17\\Source\\Repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj"
+            "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj": {
+              "projectPath": "C:\\Users\\nitinkumar17\\source\\repos\\core-repo\\BusBookingApp\\BusBooking.Shared\\BusBooking.Shared.csproj"
             }
           }
         }
@@ -3370,6 +3535,12 @@
     "frameworks": {
       "net9.0": {
         "targetAlias": "net9.0",
+        "dependencies": {
+          "Microsoft.Extensions.Identity.Core": {
+            "target": "Package",
+            "version": "[9.0.8, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
