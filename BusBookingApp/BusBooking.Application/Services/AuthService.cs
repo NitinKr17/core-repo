@@ -1,25 +1,29 @@
 ﻿using BusBooking.Application.DTOs;
 using BusBooking.Application.Interfaces;
+using BusBooking.Domain.Entities;
 using BusBooking.Infrastructure.Repositories.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace BusBooking.Application.Services;
 
 public class AuthService : IAuthService
 {
     private readonly IAuthRepository _authRepository;
+    private readonly IPasswordHasher<User> _hasher;
 
-    public AuthService(IAuthRepository authRepository)
+    public AuthService(IAuthRepository authRepository, IPasswordHasher<User> hasher)
     {
         _authRepository = authRepository;
+        _hasher = hasher;
     }
 
     public UserDto? Authenticate(string username, string password)
     {
-        var userTask = _authRepository.GetUserByEmailAsync(username);
-        userTask.Wait();
-        var user = userTask.Result;
+        var user = _authRepository.GetUserByEmailAsync(username).GetAwaiter().GetResult();
+        if (user == null) return null;
 
-        if (user == null || user.PasswordHash != password)
+        var result = _hasher.VerifyHashedPassword(user, user.PasswordHash, password);
+        if (result == PasswordVerificationResult.Failed)
             return null;
 
         return new UserDto

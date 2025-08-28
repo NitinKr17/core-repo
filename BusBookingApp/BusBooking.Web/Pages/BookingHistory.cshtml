@@ -1,4 +1,110 @@
 ﻿@page
 @model BusBooking.Web.Pages.BookingHistoryModel
+@using BusBooking.Shared.Constants
 @{
+    ViewData["Title"] = "My Bookings";
+    var successMessage = TempData[AppConstants.SuccessMessageKey]?.ToString();
+    var errorMessage = TempData[AppConstants.ErrorMessageKey]?.ToString();
+}
+
+<h2 class="mb-3">My Bookings</h2>
+
+@if (Model.Bookings == null || !Model.Bookings.Any())
+{
+    <div class="alert alert-info">You have no bookings yet.</div>
+}
+else
+{
+    <table class="table table-bordered align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>Booking Date</th>
+                <th>Bus</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Passengers</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model.Bookings)
+            {
+                var isFuture = b.Bus?.DepartureTime > DateTime.UtcNow;
+                <tr>
+                    <td>@b.BookingDate.ToString("dd MMM yyyy")</td>
+                    <td>@b.Bus?.OperatorName</td>
+                    <td>@b.Bus?.Source</td>
+                    <td>@b.Bus?.Destination</td>
+                    <td>@b.Bus?.DepartureTime.ToString("g")</td>
+                    <td>@b.Bus?.ArrivalTime.ToString("g")</td>
+                    <td>
+                        @if (b.Passengers?.Any() == true)
+                        {
+                            <ul class="mb-0">
+                                @foreach (var p in b.Passengers)
+                                {
+                                    <li>@p.Name (@p.Gender, @p.Age)</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+
+                            <span>-</span>
+                        }
+                    </td>
+                    <td class="text-center">
+                        @if (isFuture)
+                        {
+                            <a asp-page="/ManageBooking" asp-route-id="@b.Id"
+                               class="btn btn-sm btn-outline-primary">Manage</a>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Completed</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Toast container -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toastMessage" class="toast align-items-center text-white bg-success border-0"
+         role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" id="toastContent"></div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function showToast(message, isError = false) {
+            const toastEl = document.getElementById('toastMessage');
+            const toastContent = document.getElementById('toastContent');
+
+            toastContent.textContent = message;
+            toastEl.classList.remove('bg-success', 'bg-danger');
+            toastEl.classList.add(isError ? 'bg-danger' : 'bg-success');
+
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const successMessage = '@successMessage';
+            const errorMessage = '@errorMessage';
+
+            if (successMessage || errorMessage) {
+                showToast((successMessage || errorMessage), !successMessage);
+            }
+        });
+    </script>
 }

@@ -28,4 +28,18 @@ public class BusRepository : IBusRepository
     {
         return await _context.Buses.FirstOrDefaultAsync(b => b.Id == id);
     }
+
+    public async Task<List<Bus>> GetAllAsync()
+    {
+        return await _context.Buses
+            .OrderBy(b => b.Id).ThenBy(d => d.DepartureTime)
+            .ToListAsync();
+    }
+
+    public async Task<int> AddAsync(Bus bus)
+    {
+        _context.Buses.Add(bus);
+        await _context.SaveChangesAsync();
+        return bus.Id;
+    }
 }

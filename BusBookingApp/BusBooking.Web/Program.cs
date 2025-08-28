@@ -1,65 +1,54 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+﻿using BusBooking.Shared.Constants;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var jwtSettings = builder.Configuration.GetSection("Jwt");
-var jwtKey = jwtSettings["Key"];
-var jwtIssuer = jwtSettings["Issuer"];
-var jwtAudience = jwtSettings["Audience"];
-
-builder.Services.AddAuthentication(options =>
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddCookie(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.RequireHttpsMetadata = false;
-    options.SaveToken = true;
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = jwtIssuer,
-        ValidAudience = jwtAudience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey!))
-    };
+    options.LoginPath = AppConstants.Login;
+    options.LogoutPath = AppConstants.Logout;
+    options.AccessDeniedPath = AppConstants.AccessDenied;
 });
 
-builder.Services.AddHttpClient("BusBookingAPI", client =>
+builder.Services.AddHttpClient(AppConstants.BusBookingAPI, client =>
 {
-    var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"];
+    var apiBaseUrl = builder.Configuration[AppConstants.APIBaseUrlKey];
     client.BaseAddress = new Uri(apiBaseUrl!);
+})
+#if DEBUG
+.ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler();
+    handler.ServerCertificateCustomValidationCallback =
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+    return handler;
 });
+#endif
 
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddSession();
 
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
+    app.UseExceptionHandler(AppConstants.Error);
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.UseSession();
+
 app.MapRazorPages();
-app.MapGet("/", context =>
+
+app.MapGet(AppConstants.Root, context =>
 {
-    context.Response.Redirect("/Login");
+    context.Response.Redirect(AppConstants.Home);
     return Task.CompletedTask;
 });
 

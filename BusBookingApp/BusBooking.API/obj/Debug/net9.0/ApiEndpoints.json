@@ -16,9 +16,157 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "BusBooking.API.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "Auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BusBooking.Shared.Models.RegisterRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BusBooking.API.Controllers.BookingController",
+    "Method": "GetById",
+    "RelativePath": "Booking/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BusBooking.API.Controllers.BookingController",
+    "Method": "Cancel",
+    "RelativePath": "Booking/{id}/cancel",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BusBooking.API.Controllers.BookingController",
+    "Method": "AddPassenger",
+    "RelativePath": "Booking/{id}/passengers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "BusBooking.Application.DTOs.PassengerDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BusBooking.API.Controllers.BookingController",
+    "Method": "RemovePassenger",
+    "RelativePath": "Booking/{id}/passengers/{passengerId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "passengerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BusBooking.API.Controllers.BookingController",
+    "Method": "GetAll",
+    "RelativePath": "Booking/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BusBooking.API.Controllers.BookingController",
+    "Method": "GetByBus",
+    "RelativePath": "Booking/bus/{busId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "busId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BusBooking.API.Controllers.BookingController",
+    "Method": "CreateBooking",
+    "RelativePath": "Booking/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookingDto",
+        "Type": "BusBooking.Application.DTOs.BookingDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BusBooking.API.Controllers.BookingController",
+    "Method": "GetBookingsByUser",
+    "RelativePath": "Booking/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BusBooking.API.Controllers.BusController",
     "Method": "GetBus",
-    "RelativePath": "bus/{id}",
+    "RelativePath": "Bus/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -33,8 +181,34 @@
   },
   {
     "ContainingType": "BusBooking.API.Controllers.BusController",
+    "Method": "GetAll",
+    "RelativePath": "Bus/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BusBooking.API.Controllers.BusController",
+    "Method": "Create",
+    "RelativePath": "Bus/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BusBooking.Application.DTOs.BusDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BusBooking.API.Controllers.BusController",
     "Method": "Search",
-    "RelativePath": "bus/search",
+    "RelativePath": "Bus/search",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

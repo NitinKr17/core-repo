@@ -1,4 +1,90 @@
-﻿@page
-@model MyApp.Namespace.BookingsModel
+﻿@page "{busId:int?}"
+@model BusBooking.Web.Pages.Admin.BookingsModel
 @{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Bookings";
+}
+
+<h2 class="mb-3">
+    @if (Model.FilterBus is null)
+    {
+        @:All Bookings
+    }
+    else
+    {
+        @:Bookings — @Model.FilterBus.OperatorName (@Model.FilterBus.Source → @Model.FilterBus.Destination)
+    }
+</h2>
+
+@if (TempData[BusBooking.Shared.Constants.AppConstants.ErrorMessageKey] is string err && !string.IsNullOrWhiteSpace(err))
+{
+    <div class="alert alert-danger">@err</div>
+}
+
+@if (Model.Bookings == null || !Model.Bookings.Any())
+{
+    <div class="alert alert-info">No bookings found.</div>
+}
+else
+{
+    <table class="table table-bordered text-center">
+        <thead class="table-light">
+            <tr class="align-middle">
+                <th rowspan="2">#</th>
+                <th rowspan="2">Booked On</th>
+                <th rowspan="2">Bus</th>
+                <th colspan="2">Route</th>
+                <th colspan="2">Departure</th>
+                <th colspan="2">Arrival</th>
+                <th rowspan="2">Seats</th>
+                <th rowspan="2">Passengers</th>
+                <th rowspan="2">Status</th>
+            </tr>
+            <tr class="align-middle">
+                <th>From</th>
+                <th>To</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Bookings.Count; i++)
+            {
+                var b = Model.Bookings[i];
+                var isFuture = b.Bus?.DepartureTime > DateTime.UtcNow;
+                <tr class="align-middle">
+                    <td>@(i + 1)</td>
+                    <td>@b.BookingDate.ToString("dd MMM yyyy")</td>
+                    <td>@b.Bus?.OperatorName</td>
+                    <td>@b.Bus?.Source</td>
+                    <td>@b.Bus?.Destination</td>
+                    <td>@b.Bus?.DepartureTime.ToString("dd-MM-yyyy")</td>
+                    <td>@b.Bus?.DepartureTime.ToString("HH:mm")</td>
+                    <td>@b.Bus?.ArrivalTime.ToString("dd-MM-yyyy")</td>
+                    <td>@b.Bus?.ArrivalTime.ToString("HH:mm")</td>
+                    <td>@b.NumberOfSeats</td>
+                    <td class="text-start">
+                        @if (b.Passengers?.Any() == true)
+                        {
+                            <ul class="mb-0">
+                                @foreach (var p in b.Passengers)
+                                {
+                                    <li>@p.Name (@p.Gender, @p.Age)</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <span>-</span>
+                        }
+                    </td>
+                    <td class="text-center">
+                        <span class="text-muted">@((isFuture ? "Planned" : "Completed"))</span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }

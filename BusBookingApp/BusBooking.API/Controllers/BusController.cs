@@ -1,11 +1,13 @@
-﻿using BusBooking.Application.Interfaces;
+﻿using BusBooking.Application.DTOs;
+using BusBooking.Application.Interfaces;
+using BusBooking.Shared.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BusBooking.API.Controllers;
 
 [ApiController]
-[Route("bus")]
+[Route(APIConstants.Controller)]
 public class BusController : ControllerBase
 {
     private readonly IBusService _busService;
@@ -31,5 +33,19 @@ public class BusController : ControllerBase
             return NotFound();
 
         return Ok(bus);
+    }
+
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAll()
+    {
+        var list = await _busService.GetAllAsync();
+        return Ok(list);
+    }
+
+    [HttpPost("create")]
+    public async Task<IActionResult> Create([FromBody] BusDto dto)
+    {
+        var id = await _busService.CreateAsync(dto);
+        return CreatedAtAction(nameof(GetBus), new { id }, new { id });
     }
 }
