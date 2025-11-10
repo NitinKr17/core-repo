@@ -62,7 +62,7 @@ public class AuthController : ControllerBase
             new Claim(ClaimTypes.Role, user.Role),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(APIConstants.UserIdClaimType, user.Id.ToString())
-    };
+        };
 
         var token = new JwtSecurityToken(
             issuer: jwtSettings[APIConstants.JwtIssuer],

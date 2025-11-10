@@ -4,5 +4,5 @@ namespace BusBooking.Application.Interfaces;
 
 public interface IAuthService
 {
-    UserDto Authenticate(string username, string password);
+    UserDto? Authenticate(string username, string password);
 }
